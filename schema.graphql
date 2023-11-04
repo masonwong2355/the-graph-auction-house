@@ -1,0 +1,51 @@
+# enum
+enum ListingStatus {
+  Listing
+  Selling
+}
+
+#  -----------------------------------------------------------------
+type Listing @entity {
+  id: ID!
+  buyer: Bytes
+  seller: Bytes!
+  price: BigInt!
+  netPrice: BigInt!
+  startAt: BigInt!
+  endAt: BigInt!
+  status: ListingStatus!
+
+  auctionNft: AuctionNft!
+  guardian: Guardian!
+  bids: [Bid!] @derivedFrom(field: "listing")
+}
+
+type Guardian @entity {
+  id: ID! # hex address
+  guardian: Bytes! # address
+  name: String!
+  location: String!
+  stacking: BigInt!
+
+  auctionNft: [AuctionNft!] @derivedFrom(field: "guardian")
+}
+
+type AuctionNft @entity {
+  id: ID!
+  tokenId: BigInt! # uint256
+  tokenUri: String!
+  owner: Bytes! # address
+  guardian: Guardian!
+  mintAt: BigInt!
+  # burnAt: BigInt
+  # AssetStatus: AssetStatus!
+  # bids: [Bid!] @derivedFrom(field: "auctionNft")
+}
+
+type Bid @entity {
+  id: ID!
+  buyer: Bytes! # address
+  listing: Listing!
+  bidPrice: BigInt! # uint256
+  blockTimestamp: BigInt!
+}

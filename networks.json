@@ -1,0 +1,11 @@
+{
+  "mumbai": {
+    "auctionHouse": {
+      "address": "0x8967331f2174812aD820136d8068152c68376A9a",
+      "startBlock": 40040746
+    },
+    "auctionNft": {
+      "address": "0x4976B90aB67eC44A963c1Ef06D97166BF094f1Be"
+    }
+  }
+}
